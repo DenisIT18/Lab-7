@@ -7,7 +7,6 @@ package com.mycompany.databases;
 /**
  *
  * @author Денис
- */
 import java.sql.*;
 class BankSystem {
     private static final String JDBC_URL = "D:\\Presentations for University\\2 course\\Java Programming language\\practice\\Project";
@@ -19,7 +18,7 @@ class BankSystem {
         Statement statement = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("D:\\Presentations for University\\2 course\\Java Programming language\\practice\\Project");
 
             System.out.println("Connecting to database...");
             connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
@@ -27,14 +26,6 @@ class BankSystem {
 
             System.out.println("Creating statement...");
             statement = connection.createStatement();
-
-            String createCustomersTableSQL = "CREATE TABLE IF NOT EXISTS Customers (" +
-                    "id INT PRIMARY KEY AUTO_INCREMENT," +
-                    "name VARCHAR(100)," +
-                    "email VARCHAR(100)" +
-                    ")";
-            statement.executeUpdate(createCustomersTableSQL);
-            System.out.println("Table 'Customers' created (if not exists)");
 
             String createAccountsTableSQL = "CREATE TABLE IF NOT EXISTS Accounts (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
@@ -44,18 +35,6 @@ class BankSystem {
                     ")";
             statement.executeUpdate(createAccountsTableSQL);
             System.out.println("Table 'Accounts' created (if not exists)");
-
-
-            String insertCustomersSQL = "INSERT INTO Customers (name, email) VALUES " +
-                    "('Alice', 'alice@example.com')," +
-                    "('Bob', 'bob@example.com')";
-            statement.executeUpdate(insertCustomersSQL);
-            System.out.println("Data inserted into 'Customers' table");
-            
-            String insertAccountsSQL = "INSERT INTO Accounts (customer_id, balance) VALUES " +
-                    "(1, 5000.00)," +
-                    "(2, 8000.00)";
-            statement.executeUpdate(insertAccountsSQL);
             System.out.println("Data inserted into 'Accounts' table");
             
             String selectSQL = "SELECT c.id AS customer_id, c.name AS customer_name, c.email, " +
@@ -95,3 +74,4 @@ class BankSystem {
         }
     }
 }
+
